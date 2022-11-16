@@ -2,7 +2,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 803915362952.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password | docker login --username AWS --password-stdin 803915362952.dkr.ecr.us-east-1.amazonaws.com
       - docker build -t builtimage .
       - docker tag builtimage:latest $ECR_IMAGE_URL:latest
       - docker tag builtimage:latest $ECR_IMAGE_URL:$(git rev-parse HEAD)
